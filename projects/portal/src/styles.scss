@@ -1,0 +1,16 @@
+:root {
+    --lightgray: lightgray;
+    --lightpink: lightpink;
+    --lightblue: lightblue;
+    --lightcyan: lightcyan;
+    --lightgreen: lightgreen;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.header {
+    background-color: var(--lightgray) !important;
+}

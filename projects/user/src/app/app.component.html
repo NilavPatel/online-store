@@ -1,0 +1,17 @@
+<div class="login-wrapper flex align-items-center justify-content-center">
+    <div class="login-box">
+        <form #loginForm="ngForm" (submit)="loginForm.form.valid && login()">
+            <div>
+                <label>User</label>
+                <input type="text" [(ngModel)]="userName" name="txtUserName" #txtUserName="ngModel" required>
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="text" [(ngModel)]="password" name="txtPassword" #txtPassword="ngModel" required>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
