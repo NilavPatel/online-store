@@ -1,16 +1,21 @@
 :root {
-    --lightgray: lightgray;
-    --lightpink: lightpink;
-    --lightblue: lightblue;
-    --lightcyan: lightcyan;
-    --lightgreen: lightgreen;
+    --primary: #0d6efd;
+    --primary-text: #ffffff;
+
+    --secondary: #6c757d;
+    --secondary-text: #ffffff;
+
+    --background: #f8f9fa;
+
+    --success: #198754;
+    --success-text: #ffffff;
+
+    --error: #dc3545;
+    --error-text: #ffffff;
 }
 
 body {
     margin: 0px;
     padding: 0px;
-}
-
-.header {
-    background-color: var(--lightgray) !important;
+    background-color: var(--background);
 }

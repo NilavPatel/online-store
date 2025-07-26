@@ -1,10 +1,15 @@
-<div class="header">
-    Cart
-</div>
-<br>
-<div>
-    <div>
-        Shared Service Data For Auth
-    </div>
-    <div><b>User</b>: {{user?.userName}}</div>
-</div>
+<h2>Cart</h2>
+<table class="styled-table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of cartItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td class="button-group">
+            <button (click)="remove(item.id)">Remove</button>
+        </td>
+    </tr>
+</table>

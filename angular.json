@@ -77,8 +77,8 @@
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 4200,
-						"publicHost": "http://localhost:4200",
+						"port": 4400,
+						"publicHost": "http://localhost:4400",
 						"extraWebpackConfig": "projects/portal/webpack.config.js"
 					}
 				},
@@ -182,8 +182,8 @@
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 4202,
-						"publicHost": "http://localhost:4202",
+						"port": 4402,
+						"publicHost": "http://localhost:4402",
 						"extraWebpackConfig": "projects/products/webpack.config.js"
 					}
 				},
@@ -287,8 +287,8 @@
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 4203,
-						"publicHost": "http://localhost:4203",
+						"port": 4403,
+						"publicHost": "http://localhost:4403",
 						"extraWebpackConfig": "projects/cart/webpack.config.js"
 					}
 				},
@@ -392,8 +392,8 @@
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 4201,
-						"publicHost": "http://localhost:4201",
+						"port": 4401,
+						"publicHost": "http://localhost:4401",
 						"extraWebpackConfig": "projects/user/webpack.config.js"
 					}
 				},
@@ -422,39 +422,144 @@
 					}
 				}
 			}
-    },
-    "mod-fed-helper": {
-      "projectType": "library",
-      "root": "projects/mod-fed-helper",
-      "sourceRoot": "projects/mod-fed-helper/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/mod-fed-helper/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/mod-fed-helper/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/mod-fed-helper/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/mod-fed-helper/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    }
+		},
+		"mod-fed-helper": {
+			"projectType": "library",
+			"root": "projects/mod-fed-helper",
+			"sourceRoot": "projects/mod-fed-helper/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "projects/mod-fed-helper/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/mod-fed-helper/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/mod-fed-helper/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"tsConfig": "projects/mod-fed-helper/tsconfig.spec.json",
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						]
+					}
+				}
+			}
+		},
+		"cart-shared": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/cart-shared",
+			"sourceRoot": "projects/cart-shared/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/cart-shared",
+						"index": "projects/cart-shared/src/index.html",
+						"polyfills": [
+							"zone.js"
+						],
+						"tsConfig": "projects/cart-shared/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/cart-shared/public",
+								"output": "."
+							}
+						],
+						"styles": [
+							"projects/cart-shared/src/styles.scss"
+						],
+						"scripts": [],
+						"main": "projects/cart-shared/src/main.ts",
+						"extraWebpackConfig": "projects/cart-shared/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kB",
+									"maximumError": "4kB"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/cart-shared/webpack.prod.config.js"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "cart-shared:build:production",
+							"extraWebpackConfig": "projects/cart-shared/webpack.prod.config.js"
+						},
+						"development": {
+							"buildTarget": "cart-shared:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4404,
+						"publicHost": "http://localhost:4404",
+						"extraWebpackConfig": "projects/cart-shared/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "projects/cart-shared/tsconfig.spec.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "projects/cart-shared/public"
+							}
+						],
+						"styles": [
+							"projects/cart-shared/src/styles.scss"
+						],
+						"scripts": []
+					}
+				}
+			}
+		}
 	}
 }

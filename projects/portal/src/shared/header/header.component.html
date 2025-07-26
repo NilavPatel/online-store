@@ -1,10 +1,11 @@
 <div class="header">
-    <div class="menu flex align-items-center justify-content-space-between">
-        <div>Online Store</div>
-        <div>
-            <a class="menu-item" routerLink="/products">Products</a>
-            <a class="menu-item" routerLink="/cart">Cart</a> |
-            <a class="menu-item" (click)="logout()">Log Out</a>
-        </div>
+    <div class="title">Online Store</div>
+    <div class="menu">
+        <a class="menu-item" routerLink="/products">Products</a>
+        <a class="menu-item" routerLink="/cart">Cart</a>
+    </div>
+    <div>
+        <span class="user-name">User: {{user?.userName}}</span>
+        <button (click)="logout()">Log Out</button>
     </div>
 </div>

@@ -1,0 +1,14 @@
+<h2>Product List</h2>
+<table class="styled-table">
+    <tr>
+        <th>Product</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td class="button-group">
+            <button (click)="viewDetails(product.id)">View</button>
+            <button (click)="addToCart(product)">Add To Cart</button>
+        </td>
+    </tr>
+</table>

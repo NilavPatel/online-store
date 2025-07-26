@@ -16,7 +16,7 @@ export const routes: Routes = [
         loadChildren: () =>
             loadRemoteModule({
                 type: 'module',
-                remoteEntry: 'http://localhost:4201/remoteEntry.js',
+                remoteEntry: 'http://localhost:4401/remoteEntry.js',
                 exposedModule: './Routes',
             }).then((m) => m.routes),
     },
@@ -27,7 +27,7 @@ export const routes: Routes = [
         loadChildren: () =>
             loadRemoteModule({
                 type: 'module',
-                remoteEntry: 'http://localhost:4202/remoteEntry.js',
+                remoteEntry: 'http://localhost:4402/remoteEntry.js',
                 exposedModule: './Routes',
             }).then((m) => m.routes),
     },
@@ -38,7 +38,7 @@ export const routes: Routes = [
         loadChildren: () =>
             loadRemoteModule({
                 type: 'module',
-                remoteEntry: 'http://localhost:4203/remoteEntry.js',
+                remoteEntry: 'http://localhost:4403/remoteEntry.js',
                 exposedModule: './Routes',
             }).then((m) => m.routes),
     },

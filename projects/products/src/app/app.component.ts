@@ -1,6 +1,7 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { AUTH_SERVICE_TOKEN, AuthService } from 'mod-fed-helper';
+import { Router, RouterOutlet } from '@angular/router';
+import { AUTH_SERVICE_TOKEN, AuthService, User } from 'mod-fed-helper';
+import { ProductService } from './products.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,16 @@ import { AUTH_SERVICE_TOKEN, AuthService } from 'mod-fed-helper';
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [ProductService],
   encapsulation: ViewEncapsulation.ShadowDom
 })
 export class AppComponent {
-  user: any = null;
-  constructor(@Inject(AUTH_SERVICE_TOKEN) private authService: AuthService) {
-    this.user = this.authService.getUserDetails();
+  user: User | undefined;
+  constructor(@Inject(AUTH_SERVICE_TOKEN) private authService: AuthService, private router: Router) {
+    if (this.authService.isAuthenticated()) {
+      this.user = this.authService.getUserDetails();
+    } else {
+      this.router.navigate(["/login"]);
+    }
   }
 }
