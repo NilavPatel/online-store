@@ -71,3 +71,8 @@ In a big solution of entrprise level application, do not use monorepo.
 1. Add `ViewEncapsulation.ShadowDom` in root component of all applications
 2. You can use CSS variables defined in Host application in global style as they are shared in shadowdom.
 ```
+
+![login](https://github.com/NilavPatel/online-store/blob/master/docs/login.JPG?raw=true)
+![products](https://github.com/NilavPatel/online-store/blob/master/docs/products.JPG?raw=true)
+![product_details](https://github.com/NilavPatel/online-store/blob/master/docs/product_details.JPG?raw=true)
+![cart](https://github.com/NilavPatel/online-store/blob/master/docs/cart.JPG?raw=true)
